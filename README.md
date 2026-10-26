@@ -1,2 +1,4 @@
 # testrepo
-this is a school project / first repo
+
+This is a school Project. / Welcome to my first repo.
+
