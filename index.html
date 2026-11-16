@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff0f2">
+  <meta name="description" content="A colorful travel journal celebrating the people, places, and little moments that make our world wonderful.">
+  <title>Welcome to my world &lt;3 — a travel journal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --pink: #fff0f2;
+      --ink: #29241f;
+      --muted: #716761;
+      --coral: #e97563;
+      --green: #496d59;
+      --yellow: #f3c76b;
+      --line: #eadbd7;
+      --paper: #fffdf9;
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--pink);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.6;
+    }
+    button, a { font: inherit; }
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; }
+    .page-shell { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+
+    .site-header {
+      display: flex;
+      min-height: 82px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      border-bottom: 1px solid rgba(95, 63, 53, .13);
+    }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700; }
+    .brand-mark { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 50%; background: var(--coral); color: white; font-size: 18px; }
+    .nav-links { display: flex; align-items: center; gap: 30px; color: #554a43; font-size: 13px; font-weight: 600; }
+    .nav-links a:hover { color: var(--coral); }
+    .header-note { color: var(--muted); font-size: 12px; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      gap: 52px;
+      align-items: center;
+      padding: 48px 0 66px;
+    }
+    .eyebrow { display: flex; align-items: center; gap: 9px; color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+    .eyebrow::before { width: 22px; height: 1px; background: currentColor; content: ""; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 520px; margin: 16px 0 16px; font-family: var(--serif); font-size: clamp(48px, 6vw, 76px); font-weight: 600; letter-spacing: 0; line-height: 1.04; }
+    h1 span { color: var(--coral); font-style: italic; }
+    .hero-copy { max-width: 450px; margin-bottom: 24px; color: var(--muted); font-size: 15px; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    .button { display: inline-flex; min-height: 46px; align-items: center; justify-content: center; gap: 9px; padding: 0 19px; border: 0; border-radius: 4px; background: var(--green); color: white; cursor: pointer; font-size: 13px; font-weight: 700; transition: background .2s, transform .2s; }
+    .button:hover { transform: translateY(-2px); background: #355342; }
+    .text-link { padding: 10px 8px; color: #51463f; font-size: 13px; font-weight: 700; }
+    .text-link:hover { color: var(--coral); }
+
+    .hero-art { position: relative; min-height: 390px; }
+    .hero-photo { position: absolute; inset: 12px 16px 14px 32px; overflow: hidden; border-radius: 46% 46% 5px 5px; background: #c9d1c3; }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-caption { position: absolute; right: 0; bottom: 1px; padding: 11px 15px; background: var(--paper); color: #62574f; font-size: 11px; box-shadow: 0 5px 20px #593c3012; }
+    .sun-stamp { position: absolute; top: 10px; left: 0; display: grid; width: 72px; height: 72px; place-content: center; border-radius: 50%; background: var(--yellow); color: #554325; font-size: 10px; font-weight: 700; line-height: 1.3; text-align: center; transform: rotate(-10deg); }
+    .scribble { position: absolute; right: 0; top: 35px; color: var(--coral); font-family: var(--serif); font-size: 33px; transform: rotate(12deg); }
+
+    .intro-strip { display: grid; grid-template-columns: 1.1fr 1fr 1fr 1fr; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .intro-item { min-height: 92px; display: flex; align-items: center; gap: 12px; padding: 15px 20px; border-right: 1px solid var(--line); }
+    .intro-item:first-child { padding-left: 0; }
+    .intro-item:last-child { border-right: 0; }
+    .intro-icon { font-size: 22px; }
+    .intro-item strong { display: block; font-size: 12px; }
+    .intro-item span { display: block; color: var(--muted); font-size: 11px; }
+
+    .destinations { padding: 78px 0 88px; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 25px; margin-bottom: 26px; }
+    .section-heading h2 { margin: 7px 0 0; font-family: var(--serif); font-size: 38px; font-weight: 600; line-height: 1.2; }
+    .section-heading p { max-width: 320px; margin: 0; color: var(--muted); font-size: 13px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 23px; }
+    .filter-button { min-height: 35px; padding: 0 14px; border: 1px solid #e4d4d0; border-radius: 3px; background: transparent; color: #61564f; cursor: pointer; font-size: 11px; font-weight: 700; transition: .2s; }
+    .filter-button:hover, .filter-button[aria-pressed="true"] { border-color: var(--green); background: var(--green); color: white; }
+    .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; }
+    .destination-card { min-width: 0; overflow: hidden; border: 1px solid #eaded8; border-radius: 5px; background: var(--paper); transition: transform .2s, box-shadow .2s; }
+    .destination-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px #56392b12; }
+    .destination-card[hidden] { display: none; }
+    .card-image { position: relative; height: 205px; overflow: hidden; background: #e3d8cd; }
+    .card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .destination-card:hover .card-image img { transform: scale(1.04); }
+    .region-tag { position: absolute; top: 12px; left: 12px; padding: 5px 9px; border-radius: 2px; background: var(--paper); color: #53473f; font-size: 10px; font-weight: 700; }
+    .favorite { position: absolute; top: 10px; right: 10px; display: grid; width: 34px; height: 34px; place-items: center; border: 0; border-radius: 50%; background: var(--paper); cursor: pointer; font-size: 17px; transition: transform .2s, color .2s; }
+    .favorite:hover { transform: scale(1.1); }
+    .favorite[aria-pressed="true"] { color: #d65061; }
+    .card-body { padding: 16px 17px 17px; }
+    .card-meta { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 7px; color: var(--muted); font-size: 10px; }
+    .card-body h3 { margin-bottom: 7px; font-family: var(--serif); font-size: 22px; font-weight: 600; line-height: 1.25; }
+    .card-body p { min-height: 42px; margin-bottom: 12px; color: var(--muted); font-size: 12px; }
+    .card-bottom { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-top: 12px; border-top: 1px solid #eee6e0; }
+    .read-note { padding: 0; border: 0; background: none; color: var(--green); cursor: pointer; font-size: 11px; font-weight: 700; }
+    .read-note:hover { color: var(--coral); }
+    .saved-count { color: var(--muted); font-size: 11px; }
+
+    .quote-band { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 25px; padding: 35px 40px; background: #dce8df; }
+    .quote-band blockquote { max-width: 700px; margin: 0; font-family: var(--serif); font-size: clamp(21px, 3vw, 31px); line-height: 1.35; }
+    .quote-band cite { color: #596e5d; font-size: 11px; font-style: normal; }
+    .quote-mark { color: var(--coral); font-family: var(--serif); font-size: 52px; line-height: 1; }
+
+    .newsletter { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 24px; padding: 68px 0; }
+    .newsletter h2 { margin: 0 0 6px; font-family: var(--serif); font-size: 31px; font-weight: 600; }
+    .newsletter p { margin: 0; color: var(--muted); font-size: 12px; }
+    .signup-form { display: flex; gap: 8px; }
+    .signup-form input { width: min(240px, 42vw); min-height: 43px; padding: 0 12px; border: 1px solid #dfcfca; border-radius: 3px; background: var(--paper); font: inherit; font-size: 12px; }
+    .signup-form input:focus { outline: 2px solid #709078; outline-offset: 2px; }
+    .signup-form button { min-height: 43px; padding: 0 15px; border: 0; border-radius: 3px; background: var(--coral); color: white; cursor: pointer; font-size: 12px; font-weight: 700; }
+    .signup-form button:hover { background: #ce5e50; }
+    .form-message { grid-column: 1 / -1; min-height: 18px; color: var(--green); font-size: 12px; }
+    footer { display: flex; justify-content: space-between; gap: 20px; padding: 20px 0 28px; border-top: 1px solid var(--line); color: var(--muted); font-size: 10px; }
+
+    @media (max-width: 760px) {
+      .page-shell { width: min(100% - 32px, 600px); }
+      .site-header { min-height: 70px; }
+      .header-note { display: none; }
+      .nav-links { gap: 17px; font-size: 12px; }
+      .hero { grid-template-columns: 1fr; gap: 16px; padding: 43px 0 40px; }
+      .hero-art { min-height: 330px; }
+      .hero-photo { inset: 10px 15px 15px 28px; }
+      .intro-strip { grid-template-columns: 1fr 1fr; }
+      .intro-item { min-height: 75px; padding: 12px 10px; border-bottom: 1px solid var(--line); }
+      .intro-item:nth-child(2) { border-right: 0; }
+      .intro-item:nth-child(3), .intro-item:nth-child(4) { border-bottom: 0; }
+      .intro-item:first-child { padding-left: 10px; }
+      .destinations { padding: 58px 0 62px; }
+      .section-heading { align-items: start; flex-direction: column; gap: 9px; }
+      .section-heading h2 { font-size: 33px; }
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
+      .card-image { height: 170px; }
+      .quote-band { padding: 26px 23px; }
+      .newsletter { grid-template-columns: 1fr; gap: 16px; padding: 52px 0; }
+      .signup-form input { width: 100%; }
+      .signup-form { width: 100%; }
+    }
+    @media (max-width: 480px) {
+      .nav-links { gap: 12px; }
+      .nav-links a { font-size: 11px; }
+      .hero-art { min-height: 280px; }
+      .card-grid { grid-template-columns: 1fr; }
+      .card-image { height: 220px; }
+      .card-body p { min-height: 0; }
+      .quote-band { grid-template-columns: 1fr; gap: 4px; }
+      .quote-mark { grid-row: 1; font-size: 38px; }
+      footer { flex-direction: column; gap: 4px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header page-shell">
+    <a class="brand" href="#home" aria-label="Little atlas home"><span class="brand-mark" aria-hidden="true">✳</span> little atlas</a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#places">Places</a>
+      <a href="#journal">Journal</a>
+      <a href="#letters">Letters</a>
+    </nav>
+    <span class="header-note">a little wonder, everywhere</span>
+  </header>
+
+  <main>
+    <section class="hero page-shell" id="home">
+      <div>
+        <div class="eyebrow">A travel journal for curious hearts</div>
+        <h1>Welcome to my <span>world &lt;3</span></h1>
+        <p class="hero-copy">A little collection of faraway streets, slow mornings, and the lovely surprises tucked into every corner of our world. Come wander with me.</p>
+        <div class="hero-actions">
+          <a class="button" href="#places">Explore the map <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="#journal">Read the journal ↓</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-label="A mountain valley under a bright sky">
+        <div class="hero-photo"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="A peaceful mountain lake with a little wooden cabin" fetchpriority="high"></div>
+        <div class="sun-stamp" aria-hidden="true">GO<br>SEE<br>THE WORLD</div>
+        <div class="scribble" aria-hidden="true">oh, the places!</div>
+        <div class="photo-caption">Somewhere in the Swiss Alps · 46° N</div>
+      </div>
+    </section>
+
+    <section class="intro-strip page-shell" aria-label="Travel journal highlights">
+      <div class="intro-item"><span class="intro-icon" aria-hidden="true">🌍</span><div><strong>One big world</strong><span>Endless small wonders</span></div></div>
+      <div class="intro-item"><span class="intro-icon" aria-hidden="true">☀️</span><div><strong>Slow travel</strong><span>Take the scenic route</span></div></div>
+      <div class="intro-item"><span class="intro-icon" aria-hidden="true">📷</span><div><strong>Little moments</strong><span>Worth remembering</span></div></div>
+      <div class="intro-item"><span class="intro-icon" aria-hidden="true">💌</span><div><strong>Postcards</strong><span>Sent from somewhere</span></div></div>
+    </section>
+
+    <section class="destinations page-shell" id="places">
+      <div class="section-heading">
+        <div><div class="eyebrow">Notes from the road</div><h2>Places to get lost in</h2></div>
+        <p>Every place has a rhythm of its own. Here are a few corners of the map I keep coming back to.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Filter destinations by region">
+        <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All places</button>
+        <button class="filter-button" type="button" data-filter="europe" aria-pressed="false">Europe</button>
+        <button class="filter-button" type="button" data-filter="asia" aria-pressed="false">Asia</button>
+        <button class="filter-button" type="button" data-filter="americas" aria-pressed="false">The Americas</button>
+      </div>
+      <div class="card-grid" id="journal">
+        <article class="destination-card" data-region="europe">
+          <div class="card-image"><img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Colorful seaside villages along the Italian coast" loading="lazy"><span class="region-tag">EUROPE · ITALY</span><button class="favorite" type="button" aria-label="Save Cinque Terre to favorites" aria-pressed="false">♡</button></div>
+          <div class="card-body"><div class="card-meta"><span>POSTCARD NO. 01</span><span>☀ 24°C</span></div><h3>Cinque Terre, Italy</h3><p>Paint-box villages tumble down to a sea so blue it hardly seems real.</p><div class="card-bottom"><a class="read-note" href="blog.html?post=cinque-terre">Read the full story ↗</a><span class="saved-count">♡ <span class="saved-number">0</span> saved</span></div></div>
+        </article>
+        <article class="destination-card" data-region="asia">
+          <div class="card-image"><img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="A quiet traditional street in Kyoto, Japan" loading="lazy"><span class="region-tag">ASIA · JAPAN</span><button class="favorite" type="button" aria-label="Save Kyoto to favorites" aria-pressed="false">♡</button></div>
+          <div class="card-body"><div class="card-meta"><span>POSTCARD NO. 02</span><span>☁ 19°C</span></div><h3>Kyoto, Japan</h3><p>Lantern-lit lanes, temple gardens, and the soft hush of an early morning.</p><div class="card-bottom"><a class="read-note" href="blog.html?post=kyoto">Read the full story ↗</a><span class="saved-count">♡ <span class="saved-number">0</span> saved</span></div></div>
+        </article>
+        <article class="destination-card" data-region="americas">
+          <div class="card-image"><img src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="New York City streets and skyline in the evening" loading="lazy"><span class="region-tag">AMERICAS · USA</span><button class="favorite" type="button" aria-label="Save New York to favorites" aria-pressed="false">♡</button></div>
+          <div class="card-body"><div class="card-meta"><span>POSTCARD NO. 03</span><span>☀ 21°C</span></div><h3>New York, USA</h3><p>A city of a thousand little worlds, all sharing the same busy sidewalk.</p><div class="card-bottom"><a class="read-note" href="blog.html?post=new-york">Read the full story ↗</a><span class="saved-count">♡ <span class="saved-number">0</span> saved</span></div></div>
+        </article>
+        <article class="destination-card" data-region="europe">
+          <div class="card-image"><img src="https://images.unsplash.com/photo-1513735492246-483525079686?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="A canal and historic buildings in Venice, Italy" loading="lazy"><span class="region-tag">EUROPE · ITALY</span><button class="favorite" type="button" aria-label="Save Venice to favorites" aria-pressed="false">♡</button></div>
+          <div class="card-body"><div class="card-meta"><span>POSTCARD NO. 04</span><span>☀ 22°C</span></div><h3>Venice, Italy</h3><p>Bridges, boat bells, and winding lanes that turn every walk into a story.</p><div class="card-bottom"><a class="read-note" href="blog.html?post=venice">Read the full story ↗</a><span class="saved-count">♡ <span class="saved-number">0</span> saved</span></div></div>
+        </article>
+        <article class="destination-card" data-region="asia">
+          <div class="card-image"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="A tropical island coastline in Bali, Indonesia" loading="lazy"><span class="region-tag">ASIA · INDONESIA</span><button class="favorite" type="button" aria-label="Save Bali to favorites" aria-pressed="false">♡</button></div>
+          <div class="card-body"><div class="card-meta"><span>POSTCARD NO. 05</span><span>☀ 29°C</span></div><h3>Bali, Indonesia</h3><p>Green rice terraces, warm island air, and the kindest afternoon light.</p><div class="card-bottom"><a class="read-note" href="blog.html?post=bali">Read the full story ↗</a><span class="saved-count">♡ <span class="saved-number">0</span> saved</span></div></div>
+        </article>
+        <article class="destination-card" data-region="americas">
+          <div class="card-image"><img src="https://images.unsplash.com/photo-1512813195386-6cf811ad3542?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="The bright architecture and hills of Rio de Janeiro, Brazil" loading="lazy"><span class="region-tag">AMERICAS · BRAZIL</span><button class="favorite" type="button" aria-label="Save Rio de Janeiro to favorites" aria-pressed="false">♡</button></div>
+          <div class="card-body"><div class="card-meta"><span>POSTCARD NO. 06</span><span>☀ 27°C</span></div><h3>Rio de Janeiro, Brazil</h3><p>Mountain silhouettes, ocean breezes, and a city that knows how to dance.</p><div class="card-bottom"><a class="read-note" href="blog.html?post=rio">Read the full story ↗</a><span class="saved-count">♡ <span class="saved-number">0</span> saved</span></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="quote-band page-shell" aria-label="A note about travel">
+      <div><blockquote>“The world is full of little doors. Travel is just learning how to knock.”</blockquote><cite>A note to take along</cite></div>
+      <span class="quote-mark" aria-hidden="true">“</span>
+    </section>
+
+    <section class="newsletter page-shell" id="letters">
+      <div><div class="eyebrow">A postcard now and then</div><h2>A little note from somewhere?</h2><p>New places, small stories, and daydreams for your next slow Sunday.</p></div>
+      <form class="signup-form" id="signup-form"><label for="email-address" class="visually-hidden" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">Your email address</label><input id="email-address" name="email" type="email" placeholder="Your email address" autocomplete="email" required><button type="submit">Send me a postcard ↗</button></form>
+      <div class="form-message" id="form-message" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="page-shell"><span>little atlas · collecting moments, not miles</span><span>Photos via Unsplash · made for daydreamers</span></footer>
+
+  <script>
+    const filterButtons = document.querySelectorAll(".filter-button");
+    const destinationCards = document.querySelectorAll(".destination-card");
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.dataset.filter;
+        filterButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+        destinationCards.forEach((card) => {
+          card.hidden = filter !== "all" && card.dataset.region !== filter;
+        });
+      });
+    });
+
+    destinationCards.forEach((card) => {
+      const favoriteButton = card.querySelector(".favorite");
+      const favoriteNumber = card.querySelector(".saved-number");
+      favoriteButton.addEventListener("click", () => {
+        const isSaved = favoriteButton.getAttribute("aria-pressed") === "true";
+        favoriteButton.setAttribute("aria-pressed", String(!isSaved));
+        favoriteButton.textContent = isSaved ? "♡" : "♥";
+        favoriteNumber.textContent = isSaved ? "0" : "1";
+      });
+
+    });
+
+    document.querySelector("#signup-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const email = document.querySelector("#email-address");
+      document.querySelector("#form-message").textContent = `Thanks for stopping by! Your postcard list is ready for ${email.value}.`;
+      event.currentTarget.reset();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff0f2">
+  <meta name="description" content="A longer postcard from somewhere in the world.">
+  <title>A travel story — little atlas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --pink: #fff0f2;
+      --ink: #29241f;
+      --muted: #716761;
+      --coral: #e97563;
+      --green: #496d59;
+      --yellow: #f3c76b;
+      --line: #eadbd7;
+      --paper: #fffdf9;
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--pink); color: var(--ink); font-family: var(--sans); line-height: 1.65; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    .page-shell { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+    .site-header { display: flex; min-height: 82px; align-items: center; justify-content: space-between; gap: 20px; border-bottom: 1px solid rgba(95, 63, 53, .13); }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700; }
+    .brand-mark { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 50%; background: var(--coral); color: white; font-size: 18px; }
+    .back-link { color: var(--green); font-size: 12px; font-weight: 700; }
+    .back-link:hover { color: var(--coral); }
+    .story-top { display: grid; grid-template-columns: minmax(0, .86fr) minmax(0, 1.14fr); gap: 42px; align-items: center; padding: 48px 0 42px; }
+    .eyebrow { display: flex; align-items: center; gap: 9px; color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+    .eyebrow::before { width: 22px; height: 1px; background: currentColor; content: ""; }
+    h1, h2, p { margin-top: 0; }
+    h1 { margin: 14px 0 13px; font-family: var(--serif); font-size: clamp(42px, 5.2vw, 66px); font-weight: 600; letter-spacing: 0; line-height: 1.08; }
+    .story-deck { max-width: 470px; margin: 0; color: var(--muted); font-size: 15px; }
+    .story-location { margin-top: 22px; color: #76675d; font-size: 11px; font-weight: 700; letter-spacing: .5px; }
+    .story-cover { position: relative; height: clamp(265px, 34vw, 410px); margin: 0; background: #e4d7cf; }
+    .story-cover img { width: 100%; height: 100%; object-fit: cover; }
+    .story-cover figcaption { position: absolute; right: 12px; bottom: 12px; max-width: calc(100% - 24px); padding: 8px 11px; background: var(--paper); color: #62574f; font-size: 10px; }
+    .story-layout { display: grid; grid-template-columns: minmax(0, 690px) minmax(190px, 1fr); gap: 75px; align-items: start; padding: 34px 0 58px; border-top: 1px solid var(--line); }
+    .story-copy { min-width: 0; }
+    .story-copy p { margin: 0 0 22px; color: #514840; font-family: var(--serif); font-size: 17px; line-height: 1.9; }
+    .story-figure { margin: 34px 0; }
+    .story-figure img { display: block; width: 100%; max-height: 390px; aspect-ratio: 16 / 9; object-fit: cover; background: #e4d7cf; }
+    .story-figure figcaption { padding-top: 9px; color: var(--muted); font-size: 10px; }
+    .story-aside { position: sticky; top: 24px; padding-top: 7px; }
+    .aside-note { padding: 15px 0; border-top: 1px solid var(--line); }
+    .aside-note:last-child { border-bottom: 1px solid var(--line); }
+    .aside-note strong { display: block; color: var(--green); font-size: 10px; letter-spacing: .8px; text-transform: uppercase; }
+    .aside-note span { display: block; margin-top: 4px; color: #62574f; font-size: 12px; }
+    .comments { padding: 48px 0 62px; border-top: 1px solid var(--line); }
+    .comments h2 { margin: 8px 0 8px; font-family: var(--serif); font-size: 35px; font-weight: 600; }
+    .comments-intro { margin-bottom: 23px; color: var(--muted); font-size: 12px; }
+    .comment-form { display: grid; max-width: 690px; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .comment-form label { display: grid; gap: 6px; color: #534a43; font-size: 11px; font-weight: 700; }
+    .comment-form .comment-field { grid-column: 1 / -1; }
+    .comment-form input, .comment-form textarea { width: 100%; border: 1px solid #dfcfca; border-radius: 3px; background: var(--paper); color: var(--ink); font-size: 13px; }
+    .comment-form input { min-height: 42px; padding: 0 11px; }
+    .comment-form textarea { min-height: 115px; padding: 10px 11px; resize: vertical; }
+    .comment-form input:focus, .comment-form textarea:focus { outline: 2px solid #709078; outline-offset: 2px; }
+    .comment-submit { justify-self: start; min-height: 42px; padding: 0 16px; border: 0; border-radius: 3px; background: var(--green); color: white; cursor: pointer; font-size: 12px; font-weight: 700; }
+    .comment-submit:hover { background: #355342; }
+    .comment-message { align-self: center; margin: 0; color: var(--green); font-size: 11px; }
+    .comment-list { display: grid; max-width: 690px; gap: 12px; margin-top: 28px; }
+    .comment-entry { padding: 14px 0; border-top: 1px solid var(--line); }
+    .comment-heading { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
+    .comment-heading strong { color: var(--green); font-size: 12px; }
+    .comment-heading time { color: var(--muted); font-size: 10px; }
+    .comment-entry p { margin: 0; color: #514840; font-size: 13px; white-space: pre-wrap; overflow-wrap: anywhere; }
+    footer { display: flex; justify-content: space-between; gap: 20px; padding: 20px 0 28px; border-top: 1px solid var(--line); color: var(--muted); font-size: 10px; }
+    .not-found { min-height: 55vh; display: grid; align-content: center; justify-items: start; }
+    .not-found h1 { font-size: 48px; }
+    @media (max-width: 760px) {
+      .page-shell { width: min(100% - 32px, 600px); }
+      .site-header { min-height: 70px; }
+      .story-top { grid-template-columns: 1fr; gap: 22px; padding-top: 38px; }
+      .story-cover { height: min(62vw, 350px); }
+      .story-layout { grid-template-columns: 1fr; gap: 20px; padding-top: 25px; }
+      .story-aside { position: static; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; order: -1; }
+      .aside-note { padding: 11px 0; }
+      .aside-note:last-child { border-bottom: 0; }
+      .story-copy p { font-size: 16px; }
+      .comments { padding: 40px 0 48px; }
+    }
+    @media (max-width: 480px) {
+      .page-shell { width: calc(100% - 28px); }
+      .site-header { min-height: 64px; }
+      .back-link { font-size: 11px; }
+      h1 { font-size: 43px; }
+      .story-aside { grid-template-columns: 1fr; gap: 0; }
+      .aside-note { padding: 9px 0; }
+      .comment-form { grid-template-columns: 1fr; }
+      .comment-form .comment-field { grid-column: auto; }
+      footer { flex-direction: column; gap: 4px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <header class="site-header page-shell">
+    <a class="brand" href="index.html" aria-label="Little atlas home"><span class="brand-mark" aria-hidden="true">✳</span> little atlas</a>
+    <a class="back-link" href="index.html#places">← All places</a>
+  </header>
+  <main id="story-root" class="page-shell" aria-live="polite"></main>
+  <footer class="page-shell"><span>little atlas · collecting moments, not miles</span><span>Photos via Unsplash · made for daydreamers</span></footer>
+
+  <script>
+    const stories = {
+      "cinque-terre": {
+        title: "Cinque Terre, Italy",
+        region: "Europe · Italy",
+        deck: "Five little villages, one big blue sea, and a coastal path that keeps asking you to stop for just one more view.",
+        cover: "photo-1516483638261-f4dbaf036963",
+        coverAlt: "Bright houses along the Italian Riviera",
+        coverCaption: "The Ligurian coast, painted in every shade of afternoon.",
+        paragraphs: [
+          "The first thing I noticed was the color. Houses climb the hillside in shades of peach, lemon, and faded rose, stacked so close together they seem to lean in for a conversation. Below them, the Ligurian Sea changes its mind every few minutes: pale turquoise near the rocks, then deep blue where the horizon begins. Even the train station opens straight onto that bright, salty air.",
+          "I started the morning with a slow walk through the lanes of Vernazza. Shutters were opening, a delivery van was squeezing through a street that barely looked wide enough for a person, and someone was setting out bowls of lemons. There was no grand plan for the day. The plan was coffee, a little wandering, and the hope of finding a place to sit near the water. It turned out that was quite enough.",
+          "The coastal footpaths connect the villages, but they are not a race. Stone steps climb past terraces of grapevines, then turn a corner and reveal another little harbor below. I stopped often, partly for the view and partly because the path gave me a good excuse to eat the focaccia I had wrapped in paper. The nicest moments were the unplanned ones: a tiny garden gate, a cat asleep in the sun, and the sound of waves long before I could see them.",
+          "By late afternoon, the heat had softened and the waterfront filled with people watching the light change. I ordered something cold and stayed longer than I meant to. Cinque Terre reminded me that a good day does not need a long checklist. Sometimes it is just a handful of bright houses, a walk with no hurry, and a table where nobody minds if you linger."
+        ],
+        photos: [
+          { id: "photo-1500530855697-b586d89ba3ee", alt: "A winding trail with a view over the coast", caption: "A bend in the path is always a good excuse to pause." },
+          { id: "photo-1476514525535-07fb3b4ae5f1", alt: "Clear blue water beneath a bright sky", caption: "That particular blue follows you long after the train ride home." }
+        ]
+      },
+      "kyoto": {
+        title: "Kyoto, Japan",
+        region: "Asia · Japan",
+        deck: "A few quiet mornings among temple gardens, narrow lanes, and the gentle rituals that give a city its rhythm.",
+        cover: "photo-1493976040374-85c8e12f0c0e",
+        coverAlt: "A traditional wooden street in Kyoto",
+        coverCaption: "An old lane in Kyoto, just before the day gets busy.",
+        paragraphs: [
+          "Kyoto is a city of layers. A busy road can turn into a quiet lane in a few steps, and behind a plain wooden doorway there might be a garden no bigger than a room. I found myself noticing the small details first: a paper lantern over a doorway, the soft clatter of a bicycle, the careful arrangement of sweets in a shop window. The city felt less like a list of sights and more like a collection of everyday moments worth paying attention to.",
+          "I set out early one morning, before the sidewalks had filled. The air was cool and the stone paths still held the quiet of the night. At a small tea counter, I warmed my hands around a cup and watched the neighborhood wake up. Nothing dramatic happened. That was the lovely part: the steady rhythm of opening shutters, sweeping entrances, and greetings exchanged by people who clearly knew one another.",
+          "Later, I wandered through a garden where the paths seemed designed to slow you down. A pond caught the sky; moss gathered in the shade; a maple leaf had landed perfectly on a stone. I took too many pictures, then put the camera away and tried to remember the color without a screen. Travel can make you want to collect everything, but a quiet place is a good reminder that noticing is its own kind of souvenir.",
+          "In the evening, warm light appeared behind the windows and the narrow streets took on a different mood. I followed the smell of dinner until I found a tiny place serving a comforting bowl of noodles. Kyoto gave me no single grand finale. Instead, it offered small scenes that kept returning to mind on the journey home: a garden path, a cup of tea, and the wonderful feeling of having nowhere else to be."
+        ],
+        photos: [
+          { id: "photo-1503899036084-c55cdd92da26", alt: "A peaceful view across a Japanese garden", caption: "A quiet garden makes even a short pause feel like a whole afternoon." },
+          { id: "photo-1528360983277-13d401cdc186", alt: "A lantern-lit street in Japan after sunset", caption: "As evening arrives, the old streets begin to glow." }
+        ]
+      },
+      "new-york": {
+        title: "New York, USA",
+        region: "The Americas · USA",
+        deck: "A city that moves at full volume, where a single block can contain a dozen different worlds and one excellent snack.",
+        cover: "photo-1519501025264-65ba15a82390",
+        coverAlt: "New York City buildings in the evening light",
+        coverCaption: "New York looks different from every corner, and every corner has a story.",
+        paragraphs: [
+          "New York arrives all at once: the rumble of a train, the smell of something wonderful from a bakery, a yellow cab passing beneath buildings so tall they make the sky feel like a narrow ribbon. The city is busy, yes, but it is also surprisingly good at making room for a small moment. A fruit stand on a corner, a pocket park between avenues, or a quiet bookshop can turn an overwhelming walk into a favorite memory.",
+          "I picked one neighborhood and decided to explore it on foot. That was the best decision of the day. I found a café with a window seat, a mural I had not planned to see, and a tiny shop with postcards in the front window. Every few blocks the architecture shifted, and with it the soundtrack: delivery bikes, snippets of conversation, music slipping out through an open door. I stopped trying to cover ground and started looking up.",
+          "A city this big can make you feel as if you should be doing more. More museums, more landmarks, more reservations. But one of the nicest afternoons came from doing less: buying a warm pastry, sitting in the shade, and watching people hurry past on their own journeys. From that bench, the whole city seemed to pass by in miniature. Everyone had somewhere to be, but for a little while I did not.",
+          "After dark, the streets turned into reflections and glowing windows. I took the long way back, crossed a few avenues just because the light looked nice, and ended the evening with dinner from a place that had no reason to become memorable except that it did. New York is full of famous views, but the best souvenir I took away was the feeling of being a curious stranger in a city that never runs out of next corners."
+        ],
+        photos: [
+          { id: "photo-1496588152823-86ff7695e68f", alt: "A busy New York street framed by tall city buildings", caption: "The city keeps changing as you walk from one block to the next." },
+          { id: "photo-1504457047772-27faf1c00561", alt: "The bright lights of New York at night", caption: "After dark, the city makes its own kind of weather." }
+        ]
+      },
+      "venice": {
+        title: "Venice, Italy",
+        region: "Europe · Italy",
+        deck: "A city without ordinary streets, where a wrong turn can lead to a quiet canal and the best part of the day.",
+        cover: "photo-1513735492246-483525079686",
+        coverAlt: "A Venetian canal bordered by historic buildings",
+        coverCaption: "A familiar postcard view, made new again by the shifting water.",
+        paragraphs: [
+          "Venice makes you rethink the simple act of going somewhere. There are no straight routes for long: a bridge appears, a little canal interrupts the street, and a narrow passage asks you to choose left or right without offering much evidence. I gave up trying to be efficient before lunch. The city seemed to prefer a slower visitor, one who was willing to follow the sound of footsteps and see what was around the corner.",
+          "Early in the morning, the quieter lanes belonged to residents carrying groceries and shopkeepers lifting their shutters. The water was still, and the buildings reflected in it with just enough movement to blur the edges. I crossed a bridge, turned down a street I could not pronounce, and found a bakery already warm with the smell of fresh bread. Breakfast tasted better for being discovered by accident.",
+          "Later, I sat beside a canal and watched the deliveries arrive by boat. It was such an ordinary scene and such a surprising one at the same time. A box was passed from boat to doorstep; someone paused for a conversation; a bell rang somewhere out of sight. Venice is beautiful in the grand, impossible-to-ignore way, but the details that stayed with me were small and practical: laundry overhead, a door opening onto a little courtyard, footsteps echoing down a passage.",
+          "In the afternoon, I let myself get lost again. Every so often I came across a busy square, then slipped back into the quieter lanes. Near sunset, the water turned gold and the city seemed to exhale. I left with no perfect map of Venice in my head, only a handful of routes I could not quite retrace. Somehow that felt right. Some places are better remembered as a mood than as directions."
+        ],
+        photos: [
+          { id: "photo-1514890547357-a9ee288728e0", alt: "A narrow canal passing beneath a stone bridge", caption: "In Venice, the next bridge is never very far away." },
+          { id: "photo-1516483638261-f4dbaf036963", alt: "Sunlit old buildings by a calm stretch of water", caption: "A quieter stretch of water at the end of a long walk." }
+        ]
+      },
+      "bali": {
+        title: "Bali, Indonesia",
+        region: "Asia · Indonesia",
+        deck: "A slower island diary of early light, green terraces, warm fruit, and learning to let an afternoon take its time.",
+        cover: "photo-1537996194471-e657df975ab4",
+        coverAlt: "A green tropical landscape in Bali",
+        coverCaption: "The island seems to grow greener whenever the rain has passed.",
+        paragraphs: [
+          "On Bali, the morning arrives with birdsong and the distant sound of a scooter winding along the road. I liked getting up early, before the sun turned the day bright and warm. From the path, the rice terraces looked like green ribbons folded over the hills. Water moved quietly between the paddies, and the whole landscape seemed to be working together at a pace much older than any travel plan.",
+          "A little fruit stall became my favorite breakfast stop. There was no menu to study, just whatever looked ripe and cheerful that morning. I sat in the shade and watched people pass, each heading somewhere with a confidence I envied. The mango was sweet, the air smelled faintly of rain, and I had no reason to hurry. It is remarkable how restorative a simple meal can be when you leave enough time to taste it.",
+          "The island is full of places that ask for a quieter kind of attention: a small garden, a roadside offering, a stretch of beach after the crowds have gone. I found myself walking more slowly and taking fewer pictures. Instead, I tried to notice the patterns: leaves moving in a breeze, a family preparing a meal, the light shifting across the water. Not every part of a trip needs to become a story. Some parts are lovely because they belong only to that moment.",
+          "When the afternoon rain arrived, I stayed under a roof and listened to it gather strength, then fade. The island smelled fresh afterward. I went out for a walk and found the paths shining, with little puddles catching the sky. Bali gave me a few spectacular views, but it also gave me permission to have an ordinary day somewhere new. I came home remembering that feeling most clearly: a cool drink, rain on leaves, and all the time in the world."
+        ],
+        photos: [
+          { id: "photo-1518548419970-58e3b4079ab2", alt: "A tropical coastline with green hills and bright water", caption: "A view best enjoyed without looking at the clock." },
+          { id: "photo-1512100356356-de1b84283e18", alt: "Palm trees leaning over a warm tropical beach", caption: "By late afternoon, the island light turns everything honey-gold." }
+        ]
+      },
+      "rio": {
+        title: "Rio de Janeiro, Brazil",
+        region: "The Americas · Brazil",
+        deck: "An open-air city diary, with mountain silhouettes, salty breezes, and the kind of sunset that makes everyone pause.",
+        cover: "photo-1512813195386-6cf811ad3542",
+        coverAlt: "Colorful buildings and green hills in Rio de Janeiro",
+        coverCaption: "In Rio, the city and the mountains always seem to be in conversation.",
+        paragraphs: [
+          "Rio is a city with a horizon you cannot ignore. Green mountains rise behind the neighborhoods, and the ocean keeps appearing at the edge of a street or between two buildings. The landscape makes even an ordinary walk feel a little theatrical. I found myself stopping often, not to take a better picture, but to understand how the city fit between the hills and the sea.",
+          "Mornings were my favorite. The air still felt gentle, people were out walking, and the beach had not yet filled with the day's plans. I bought something cold to drink and watched the light move over the water. A game was starting nearby; someone was laughing; a dog had decided the shade belonged to it. It was a busy scene, but it never felt like there was only one right way to spend the morning.",
+          "I spent an afternoon wandering through streets where bright walls and balconies made their own color map. Music drifted around corners, sometimes so quietly I was not sure where it came from. A small meal took longer than expected, which was a gift rather than a problem. Rio seemed to invite you to be present in public: to sit, to listen, to share a view with strangers who might become your temporary neighbors.",
+          "As the sun lowered, people gathered wherever they could see the sky. The mountains darkened, the water caught the last gold, and conversation softened for a few minutes. The city did not become quiet exactly, but the whole afternoon seemed to take a breath. I left with the sound of waves in my head and a reminder that joy does not have to be carefully scheduled. Sometimes you just need somewhere to sit and watch the light change."
+        ],
+        photos: [
+          { id: "photo-1483729558449-99ef09a8c325", alt: "A wide view of Rio de Janeiro between mountains and sea", caption: "The view from above makes the city's shape feel almost dreamlike." },
+          { id: "photo-1516306580123-e6e52b1b7b5f", alt: "A sunny beach beside a lively Brazilian city", caption: "A little shade, a sea breeze, and nowhere else to be." }
+        ]
+      }
+    };
+
+    const root = document.querySelector("#story-root");
+    const slug = new URLSearchParams(window.location.search).get("post");
+    const story = stories[slug];
+
+    function makeImageUrl(photoId, width) {
+      return `https://images.unsplash.com/${photoId}?auto=format&fit=crop&w=${width}&q=85`;
+    }
+
+    function showNotFound() {
+      const section = document.createElement("section");
+      section.className = "not-found";
+      const title = document.createElement("h1");
+      title.textContent = "That postcard got lost.";
+      const link = document.createElement("a");
+      link.className = "back-link";
+      link.href = "index.html#places";
+      link.textContent = "Back to all places →";
+      section.append(title, link);
+      root.append(section);
+    }
+
+    function renderStory() {
+      document.title = `${story.title} — little atlas`;
+
+      const top = document.createElement("section");
+      top.className = "story-top";
+      const heading = document.createElement("div");
+      const eyebrow = document.createElement("div");
+      eyebrow.className = "eyebrow";
+      eyebrow.textContent = "A postcard from the road";
+      const title = document.createElement("h1");
+      title.textContent = story.title;
+      const deck = document.createElement("p");
+      deck.className = "story-deck";
+      deck.textContent = story.deck;
+      const location = document.createElement("div");
+      location.className = "story-location";
+      location.textContent = `${story.region.toUpperCase()} · A LITTLE ATLAS STORY`;
+      heading.append(eyebrow, title, deck, location);
+
+      const cover = document.createElement("figure");
+      cover.className = "story-cover";
+      const coverImage = document.createElement("img");
+      coverImage.src = makeImageUrl(story.cover, 1400);
+      coverImage.alt = story.coverAlt;
+      coverImage.fetchPriority = "high";
+      const coverCaption = document.createElement("figcaption");
+      coverCaption.textContent = story.coverCaption;
+      cover.append(coverImage, coverCaption);
+      top.append(heading, cover);
+
+      const layout = document.createElement("section");
+      layout.className = "story-layout";
+      const copy = document.createElement("article");
+      copy.className = "story-copy";
+      story.paragraphs.forEach((text, index) => {
+        const paragraph = document.createElement("p");
+        paragraph.textContent = text;
+        copy.append(paragraph);
+        if (index === 0 || index === 2) {
+          const photo = story.photos[index === 0 ? 0 : 1];
+          const figure = document.createElement("figure");
+          figure.className = "story-figure";
+          const image = document.createElement("img");
+          image.src = makeImageUrl(photo.id, 1200);
+          image.alt = photo.alt;
+          image.loading = "lazy";
+          const caption = document.createElement("figcaption");
+          caption.textContent = photo.caption;
+          figure.append(image, caption);
+          copy.append(figure);
+        }
+      });
+
+      const aside = document.createElement("aside");
+      aside.className = "story-aside";
+      const notes = [
+        ["Travel mood", "Take the scenic route"],
+        ["Best souvenir", "A story to tell later"],
+        ["Photo credit", "Unsplash · free image links"]
+      ];
+      notes.forEach(([label, value]) => {
+        const note = document.createElement("div");
+        note.className = "aside-note";
+        const strong = document.createElement("strong");
+        strong.textContent = label;
+        const span = document.createElement("span");
+        span.textContent = value;
+        note.append(strong, span);
+        aside.append(note);
+      });
+      layout.append(copy, aside);
+
+      const comments = document.createElement("section");
+      comments.className = "comments";
+      comments.id = "comments";
+      comments.innerHTML = `
+        <div class="eyebrow">Leave a little note</div>
+        <h2>Join the conversation</h2>
+        <p class="comments-intro">What would you love to see here? Share a kind thought or a travel tip.</p>
+        <form class="comment-form" id="comment-form">
+          <label>Your name<input name="name" type="text" maxlength="50" autocomplete="name" required></label>
+          <label class="comment-field">Your comment<textarea name="comment" maxlength="1000" required></textarea></label>
+          <button class="comment-submit" type="submit">Post a comment ↗</button>
+          <p class="comment-message" id="comment-message" aria-live="polite"></p>
+        </form>
+        <div class="comment-list" id="comment-list" aria-live="polite"></div>
+      `;
+
+      root.append(top, layout, comments);
+      setupComments(slug);
+    }
+
+    function setupComments(postSlug) {
+      const storageKey = `little-atlas-comments-${postSlug}`;
+      const list = document.querySelector("#comment-list");
+      const form = document.querySelector("#comment-form");
+      const message = document.querySelector("#comment-message");
+      let savedComments = [];
+
+      function readComments() {
+        try {
+          const saved = localStorage.getItem(storageKey);
+          savedComments = saved ? JSON.parse(saved) : [];
+          if (!Array.isArray(savedComments)) savedComments = [];
+        } catch {
+          savedComments = [];
+        }
+      }
+
+      function renderComments() {
+        list.replaceChildren();
+        savedComments.forEach((comment) => {
+          const article = document.createElement("article");
+          article.className = "comment-entry";
+          const heading = document.createElement("div");
+          heading.className = "comment-heading";
+          const name = document.createElement("strong");
+          name.textContent = comment.name;
+          const date = document.createElement("time");
+          date.textContent = comment.date;
+          const text = document.createElement("p");
+          text.textContent = comment.text;
+          heading.append(name, date);
+          article.append(heading, text);
+          list.append(article);
+        });
+      }
+
+      readComments();
+      renderComments();
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const newComment = {
+          name: String(formData.get("name")).trim(),
+          text: String(formData.get("comment")).trim(),
+          date: new Intl.DateTimeFormat(undefined, { dateStyle: "medium" }).format(new Date())
+        };
+        if (!newComment.name || !newComment.text) return;
+
+        savedComments.unshift(newComment);
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(savedComments));
+          message.textContent = "Your note has been added. Thanks for sharing!";
+        } catch {
+          message.textContent = "Your note is shown for this visit, but this browser cannot save it.";
+        }
+        renderComments();
+        form.reset();
+      });
+    }
+
+    if (story) renderStory();
+    else showNotFound();
+  </script>
+</body>
+</html>
